@@ -65,11 +65,30 @@
       <div id="continueButton" style="display: none;">
         <button onclick="displayMessage()">Continue</button>
       </div>
+      <div id="secondContinueButton" style="display: none;">
+        <button onclick="displayImage()">Continue Again</button>
+      </div>
+      <div id="thirdContinueButton" style="display: none;">
+        <button onclick="displayFinalMessage()">Continue Once More</button>
+      </div>
       </br>
     </div>
   </div>
 </div>
+<div id="imageContainer" style="display: none;">
+  <img id="displayedImage" src="" alt="Displayed Image">
+  <p id="imageMessage">Thank you for clicking the "Continue" button. Here's an image for you!</p>
+</div>
+<div id="finalMessageContainer" style="display: none;">
+  <p id="finalMessage">Thank you for experiencing this special journey with me. I love you, Archana.</p>
+</div>
 <script>
+let imageIndex = 0;
+const images = [
+  "https://github.com/saiswaroopmedam/Special/blob/main/WhatsApp%20Image%202023-07-07%20at%2019.51.11.jpeg",
+  "https://github.com/saiswaroopmedam/Special/blob/main/WhatsApp%20Image%202023-07-07%20at%2019.51.11%20(1).jpeg",
+];
+
 function revealMessage() {
   const initialMessage = document.getElementById('initialMessage');
   const hiddenContent = document.getElementById('hiddenContent');
@@ -111,11 +130,40 @@ function showMessage() {
 function displayMessage() {
   const messageElement = document.getElementById('responseMessage');
   const continueButton = document.getElementById('continueButton');
+  const secondContinueButton = document.getElementById('secondContinueButton');
   const olderMessage = messageElement.innerHTML;
 
   messageElement.innerHTML = "<p>When I first saw you I was afraid to talk to you, when I first talked to you I was afraid to like you, when I first liked you I was afraid to love you, now that I love you I’m afraid to lose you.</p>";
 
-  continueButton.style.display = 'none'; // Hide continue button after clicking
+  continueButton.style.display = 'none'; // Hide first continue button after clicking
+  secondContinueButton.style.display = 'block'; // Show second continue button
+}
+
+function displayImage() {
+  const imageContainer = document.getElementById('imageContainer');
+  const displayedImage = document.getElementById('displayedImage');
+  const imageMessage = document.getElementById('imageMessage');
+  const secondContinueButton = document.getElementById('secondContinueButton');
+  const thirdContinueButton = document.getElementById('thirdContinueButton');
+
+  if (imageIndex < images.length) {
+    displayedImage.src = images[imageIndex];
+    imageMessage.style.display = 'block';
+    imageContainer.style.display = 'block';
+    imageIndex++;
+  } else {
+    imageMessage.style.display = 'none';
+    imageContainer.style.display = 'none';
+    secondContinueButton.style.display = 'none'; // Hide second continue button
+    thirdContinueButton.style.display = 'block'; // Show third continue button
+  }
+}
+
+function displayFinalMessage() {
+  const finalMessageContainer = document.getElementById('finalMessageContainer');
+  const thirdContinueButton = document.getElementById('thirdContinueButton');
+  finalMessageContainer.style.display = 'block';
+  thirdContinueButton.style.display = 'none'; // Hide third continue button
 }
 </script>
 </body>
